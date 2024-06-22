@@ -1,22 +1,38 @@
+from src.vacancy import Vacancy
 from abc import ABC, abstractmethod
+from typing import Any
+
 import requests
-import json
 
 
 class AbstractApi(ABC):
     @abstractmethod
-    def get_request(self, *args):
+    def __get_request(self, *args):
         pass
 
 
 class ApiHH(AbstractApi):
     def __init__(self):
-        self.url = "https://api.hh.ru/vacancies"
-        self.headers = {'User-Agent': 'HH-User-Agent'}
+        self.URL = "https://api.hh.ru/vacancies"
+        self.HEADERS = {'User-Agent': 'HH-User-Agent'}
 
-    def get_request(self, keyword, page):
+    def __get_request(self, keyword: str, page: int):
         params = {
             "text": keyword,
             "page": page
         }
-        return requests.get(url=self.url, params=params, headers=self.headers)
+        return (requests.get(url=self.URL, params=params, headers=self.HEADERS)).json()
+
+    @staticmethod
+    def __processing_vacancies(vacancies: list[dict[str, Any]]) -> list:
+        vacancies_processed = []
+        for vacancy in vacancies:
+            vacancies_processed.append(Vacancy(name=vacancy["name"],
+                                               url=vacancy["alternate_url"],
+                                               salary=vacancy["salary"],
+                                               description=vacancy["snippet"]))
+
+        return vacancies_processed
+
+    def get_vacancies(self, keyword: str, page: int) -> list:
+        return self.__processing_vacancies(self.__get_request(keyword, page)["items"])
