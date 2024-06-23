@@ -2,8 +2,6 @@ import json
 from abc import ABC, abstractmethod
 from typing import Any
 
-from src.api import ApiHH
-
 
 class AbstractList(ABC):
     @abstractmethod
@@ -35,15 +33,10 @@ class JsonJobList(AbstractList):
         with open(f"..//data//data.json", "w+", encoding="utf-8") as file:
             json.dump(list_ok, file, ensure_ascii=False)
 
-    def get_data_from_file(self):
-        pass
+    def get_data_from_file(self) -> list[dict[str, Any]]:
+        with open(f"..//data//data.json", "r", encoding="utf-8") as file:
+            data = json.load(file)
+        return data
 
     def del_vacancy(self):
         pass
-
-
-
-a = JsonJobList()
-api = ApiHH()
-
-a.add_vacancy(api.get_vacancies("Программист", 2))

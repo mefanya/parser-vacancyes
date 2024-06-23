@@ -11,6 +11,11 @@ class Vacancy:
         self.salary = self.validate(salary)
         self.description = description
 
+    def __gt__(self, other):
+        if self.salary > other.salary:
+            return self
+        return other
+
     @staticmethod
     def validate(salary: int | None) -> int:
         return salary or 0
