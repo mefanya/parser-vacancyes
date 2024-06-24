@@ -27,13 +27,16 @@ class ApiHH(AbstractApi):
 
         :param keyword: Запрос
         :param page: Страница (от 1 до 20)
-        :return: Словарь. По ключу items можно получить словарь с вакансиями dict и необходимыми параметрами внутри
+        :return: Словарь. По ключу items можно получить словарь с вакансиями
+        dict и необходимыми параметрами внутри
         """
         params = {
             "text": keyword,
             "page": page
         }
-        return (requests.get(url=self.URL, params=params, headers=self.HEADERS)).json()
+        return (requests.get(url=self.URL,
+                             params=params,
+                             headers=self.HEADERS)).json()
 
     @staticmethod
     def __processing_vacancies(vacancies: list[dict[str, Any]]) -> list:
@@ -54,10 +57,13 @@ class ApiHH(AbstractApi):
 
     def get_vacancies(self, keyword: str, page: int) -> list:
         """
-        Публичный метод для получения уже обработанных вакансий. Получаем сразу список из объектов с нужными параметрами
+        Публичный метод для получения уже обработанных вакансий.
+        Получаем сразу список из объектов с нужными параметрами
 
         :param keyword: Запрос
         :param page: Страница (от 1 до 20)
-        :return: Словарь. По ключу items можно получить словарь с вакансиями dict и необходимыми параметрами внутри
+        :return: Словарь. По ключу items можно получить словарь с вакансиями
+        dict и необходимыми параметрами внутри
         """
-        return self.__processing_vacancies(self._get_request(keyword, page)["items"])
+        return self.__processing_vacancies(self._get_request(keyword,
+                                                             page)["items"])

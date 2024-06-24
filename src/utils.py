@@ -10,7 +10,8 @@ def user_interaction(vacancies_list: list[dict[str, Any]]):
     :return: Ничего не возвращает. Печатает отфильтрованные вакансии
     """
     top_n = int(input("Введите количество вакансий для вывода в топ N: "))
-    filter_words = input("Введите ключевые слова для фильтрации вакансий: ").split()
+    filter_words = input("Введите ключевые слова "
+                         "для фильтрации вакансий: ").split()
     salary_from = int(input("Введите зарплату от: "))
 
     filtered_vacancies = filter_vacancies(vacancies_list, filter_words)
@@ -22,7 +23,8 @@ def user_interaction(vacancies_list: list[dict[str, Any]]):
     print_vacancies(top_vacancies)
 
 
-def filter_vacancies(vacancies_list: list[dict[str, Any]], filter_words: list) -> list[dict[str, Any]]:
+def filter_vacancies(vacancies_list: list[dict[str, Any]],
+                     filter_words: list) -> list[dict[str, Any]]:
     """
     Фильтрует список вакансий по ключевым словам из списка.
 
@@ -39,7 +41,8 @@ def filter_vacancies(vacancies_list: list[dict[str, Any]], filter_words: list) -
     return sorted_vacancy
 
 
-def reformat_list_to_object(list_for_reformation: list[dict[str, Any]]) -> list[object]:
+def reformat_list_to_object(list_for_reformation: list[dict[str, Any]]) \
+        -> list[object]:
     """
     Превращает список вакансий в список объектов.
 
@@ -56,7 +59,8 @@ def reformat_list_to_object(list_for_reformation: list[dict[str, Any]]) -> list[
     return list_object
 
 
-def get_vacancies_by_salary(vacancies: list[dict[str, Any]], salary_from: int) -> list[dict[str, Any]]:
+def get_vacancies_by_salary(vacancies: list[dict[str, Any]],
+                            salary_from: int) -> list[dict[str, Any]]:
     """
     Фильтрует вакансии по зарплате
 
@@ -66,7 +70,8 @@ def get_vacancies_by_salary(vacancies: list[dict[str, Any]], salary_from: int) -
     """
     vacancies_from = []
     for vacancy in vacancies:
-        if vacancy.get("salary") == 0 or vacancy.get("salary").get("from") is None:
+        if (vacancy.get("salary") == 0
+                or vacancy.get("salary").get("from") is None):
             continue
         if vacancy.get("salary").get("from") >= salary_from:
             vacancies_from.append(vacancy)
@@ -81,11 +86,14 @@ def sort_vacancies(vacancies: list[dict[str, Any]]) -> list[dict[str, Any]]:
     :param vacancies: Список вакансий
     :return: Отсортированный список вакансий
     """
-    sorted_vac = sorted(vacancies, key=lambda x: x["salary"]["from"], reverse=True)
+    sorted_vac = sorted(vacancies,
+                        key=lambda x: x["salary"]["from"],
+                        reverse=True)
     return sorted_vac
 
 
-def get_top_vacancies(vacancies: list[dict[str, Any]], count_vac: int) -> list[dict[str, Any]]:
+def get_top_vacancies(vacancies: list[dict[str, Any]],
+                      count_vac: int) -> list[dict[str, Any]]:
     """
     Срезает количество возвращаемых вакансий до заданного количества
 

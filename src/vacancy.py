@@ -7,7 +7,11 @@ class Vacancy:
     salary: int | None
     description: str | None
 
-    def __init__(self, name: str, url: str, salary: int | None, description: str | None):
+    def __init__(self,
+                 name: str,
+                 url: str,
+                 salary: int | None,
+                 description: str | None):
         """
         Инициализация класса
 

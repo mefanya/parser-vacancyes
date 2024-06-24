@@ -1,8 +1,3 @@
-from typing import Any
-
-from tests.conftest import first_api
-
-
 def test_api_init(first_api):
     assert first_api.URL == "https://api.hh.ru/vacancies"
     assert first_api.HEADERS == {'User-Agent': 'HH-User-Agent'}
