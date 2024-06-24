@@ -19,7 +19,7 @@ class AbstractList(ABC):
 
 class JsonJobList(AbstractList):
     def add_vacancy(self, vacancies: list):
-        with open(f"..//data//data.json", "r", encoding="utf-8") as file:
+        with open("data/data.json", "r", encoding="utf-8") as file:
             list_ok: list[dict[str, Any]] = json.load(file)
 
         for vacancy in vacancies:
@@ -30,11 +30,11 @@ class JsonJobList(AbstractList):
                 "description": vacancy.description
             })
 
-        with open(f"..//data//data.json", "w+", encoding="utf-8") as file:
+        with open("data/data.json", "w+", encoding="utf-8") as file:
             json.dump(list_ok, file, ensure_ascii=False)
 
     def get_data_from_file(self) -> list[dict[str, Any]]:
-        with open(f"..//data//data.json", "r", encoding="utf-8") as file:
+        with open("data/data.json", "r", encoding="utf-8") as file:
             data = json.load(file)
         return data
 

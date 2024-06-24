@@ -3,7 +3,6 @@ class Vacancy:
     url: str
     salary: int | None
     description: str | None
-    vacancy_count = 0
 
     def __init__(self, name: str, url: str, salary: int | None, description: str | None):
         self.name = name
