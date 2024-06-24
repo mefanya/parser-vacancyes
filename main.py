@@ -4,7 +4,8 @@ from src.job_list import JsonJobList
 
 
 def main():
-    count_pages = int(input("Сколько страниц хотите получить? (От 1 до 100)\n"))
+    count_pages = int(input("Сколько страниц хотите получить? "
+                            "(От 1 до 100)\n"))
 
     search_query = input("Введите поисковый запрос: ")
 

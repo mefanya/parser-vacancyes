@@ -1,6 +1,3 @@
-from tests.conftest import first_job_list
-
-
 def test_get_data_from_file(first_job_list):
     result = first_job_list.get_data_from_file()
 

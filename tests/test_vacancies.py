@@ -1,6 +1,3 @@
-from tests.conftest import first_vacancy, second_vacancy
-
-
 def test_vacancy_first_init(first_vacancy):
     assert first_vacancy.name == "Python Developer"
     assert first_vacancy.url == "https://hh.ru/vacancy/test"
@@ -17,4 +14,3 @@ def test_vacancy_second_init(second_vacancy):
 
 def test_compare_vacancies(first_vacancy, second_vacancy):
     assert first_vacancy > second_vacancy
-
