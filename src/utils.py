@@ -68,7 +68,7 @@ def get_vacancies_by_salary(vacancies: list[dict[str, Any]], salary_from: int) -
     for vacancy in vacancies:
         if vacancy.get("salary") == 0 or vacancy.get("salary").get("from") is None:
             continue
-        if vacancy.get("salary").get("from") > salary_from:
+        if vacancy.get("salary").get("from") >= salary_from:
             vacancies_from.append(vacancy)
 
     return vacancies_from
